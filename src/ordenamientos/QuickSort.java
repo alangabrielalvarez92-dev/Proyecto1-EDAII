@@ -23,8 +23,8 @@ public class QuickSort {
                 i=i+1;
                 artistas.swapArtista(i, j);
             }
-        artistas.swapArtista(i+1, fin);
         }
+        artistas.swapArtista(i+1, fin);
         return i+1;
 
 
