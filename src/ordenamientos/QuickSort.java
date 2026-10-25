@@ -38,16 +38,16 @@ public class QuickSort {
     }
 
     private static int partition(ListaCanciones canciones, int inicio, int fin){
-        Artista pivote= canciones.getArtista(fin);
+        Cancion pivote= canciones.getCancion(fin);
         int i= inicio-1;
         for(int j=inicio; j<=fin-1;j++){
-            int comparacion =canciones.getCanciones(j).getNombre().compareTo(pivote.getNombre());
+            int comparacion =canciones.getCancion(j).getNombre().compareTo(pivote.getNombre());
             if(comparacion<=0){
                 i=i+1;
-                canciones.swapCanciones(i, j);
+                canciones.swapCancion(i, j);
             }
         }
-        canciones.swapCanciones(i+1, fin);
+        canciones.swapCancion(i+1, fin);
         return i+1;
     }
 

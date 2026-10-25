@@ -1,49 +1,84 @@
 package colecciones;
 
 import modelos.Artista;
+
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Collections;
-import busquedas.*;
 
 public class ListaArtistas {
-   private List<Artista> artistas;
+    private ArrayList<Artista> artistas;
 
-   public ListaArtistas(){
-       artistas = new ArrayList<>();
+    public ListaArtistas(){
+        artistas = new ArrayList<>();
     }
 
-   public void agregarArtista(Artista artista){
-    artistas.add(artista);
-   }
+    public boolean agregarArtista(Artista artista){
+        if (artista == null || artista.getNombre() == null || artista.getNombre().trim().isEmpty()) {
+            return false;
+        }
+        if (buscarArtista(artista.getNombre()) != null) {
+            return false;
+        }
+        artistas.add(artista);
+        return true;
+    }
 
-   public void eliminarArtista(Artista artista){
-    artistas.remove(artista);
-   }
+    public boolean eliminarArtista(String nombre){
+        Artista artista = buscarArtista(nombre);
+        if (artista == null) {
+            return false;
+        }
+        artistas.remove(artista);
+        return true;
+    }
 
-   public int tamanioListaArtistas(){
-    return artistas.size();
-   }
+    public Artista buscarArtista(String nombre){
+        if (nombre == null) {
+            return null;
+        }
+        for (Artista artista : artistas) {
+            if (artista.getNombre().trim().equalsIgnoreCase(nombre.trim())) {
+                return artista;
+            }
+        }
+        return null;
+    }
 
-   public boolean buscarArtista(String nombre){
-      
-      return BusquedaLineal.busquedaLinealBoolean(artistas, nombre);
-   }
+    public ArrayList<Artista> getArtistas(){
+        return artistas;
+    }
 
-   //Obtener artista por nombre (BORRAR COMENTARIO ANTES DE ACABAR EL TRABAJO)
-   public Artista getArtista(String nombre){
-      
-      return BusquedaLineal.busquedaLinealArtista(artistas, nombre);
-   }
+    public Artista getArtista(int indice){
+        return artistas.get(indice);
+    }
 
-   //Obtener artista por indice
-   public Artista getArtista(int indice){
-      return artistas.get(indice);
-   }
+    public void swapArtista(int i, int j){
+        Artista temporal = artistas.get(i);
+        artistas.set(i, artistas.get(j));
+        artistas.set(j, temporal);
+    }
 
-   public void swapArtista(int i, int j){
-      Collections.swap(artistas,i,j);
-   }
+    public int size(){
+        return artistas.size();
+    }
 
+    public void mostrarArtistas(){
+        if (artistas.isEmpty()) {
+            System.out.println("La lista de artistas esta vacia");
+            return;
+        }
+        for (Artista artista : artistas) {
+            System.out.println(artista);
+        }
+    }
+    public boolean eliminarArtista(Artista artista){
+        return artistas.remove(artista);
+    }
 
+    public int tamanioListaArtistas(){
+        return size();
+    }
+
+    public Artista getArtista(String nombre){
+        return buscarArtista(nombre);
+    }
 }
