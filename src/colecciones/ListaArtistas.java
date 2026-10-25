@@ -70,4 +70,15 @@ public class ListaArtistas {
             System.out.println(artista);
         }
     }
+    public boolean eliminarArtista(Artista artista){
+        return artistas.remove(artista);
+    }
+
+    public int tamanioListaArtistas(){
+        return size();
+    }
+
+    public Artista getArtista(String nombre){
+        return buscarArtista(nombre);
+    }
 }
