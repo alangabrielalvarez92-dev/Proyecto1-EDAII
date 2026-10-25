@@ -6,6 +6,7 @@ import modelos.*;
 
 public class QuickSort {
 
+    //QUICKSORT PARA ARTISTAS
     public static void quickSort(ListaArtistas artistas,int inicio, int fin){
         if(inicio<fin){
             int indice= partition(artistas,inicio,fin);
@@ -26,9 +27,8 @@ public class QuickSort {
         }
         artistas.swapArtista(i+1, fin);
         return i+1;
-
-
     }
+    
 
 
 }
