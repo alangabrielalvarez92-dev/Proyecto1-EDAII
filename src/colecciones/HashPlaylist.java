@@ -8,12 +8,15 @@ public class HashPlaylist {
 
     public HashPlaylist(int capacidad) {
         if (capacidad <= 0) {
-            throw new IllegalArgumentException("La capacidad debe ser mayor que cero");
+            System.out.println("La capacidad debe ser mayor que cero");
+            this.capacidad = 10;
+        } else {
+            this.capacidad = capacidad;
         }
-        this.capacidad = capacidad;
+
         tabla = new ArrayList<>();
 
-        for (int i = 0; i < capacidad; i++) {
+        for (int i = 0; i < this.capacidad; i++) {
             tabla.add(new ArrayList<Playlist>());
         }
     }

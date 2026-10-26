@@ -5,9 +5,10 @@ public class Cancion{
     private int id;
     private String nombre;
     private Artista artista;
+    private static int contador = 0;
 
-    public Cancion(int id, String nombre,Artista artista){
-        this.id = id;
+    public Cancion(String nombre,Artista artista){
+        this.id = contador++;
         this.nombre = nombre;
         this.artista = artista;
 

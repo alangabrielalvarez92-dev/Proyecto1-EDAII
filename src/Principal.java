@@ -22,7 +22,7 @@ public class Principal {
             opcion = Utilidades.leerEntero(entrada);
             switch (opcion){
                 case 1 ->{
-                    OpcionesCanciones.ejecutar(canciones,entrada);
+                    OpcionesCanciones.ejecutar(canciones,artistas,entrada);
                 }
                 case 2 ->{
                     OpcionesArtistas.ejecutar(artistas,entrada);
