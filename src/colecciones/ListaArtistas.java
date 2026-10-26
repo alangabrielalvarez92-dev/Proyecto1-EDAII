@@ -1,10 +1,11 @@
 package colecciones;
 
+import busquedas.BusquedaLineal;
 import modelos.Artista;
 
 import java.util.ArrayList;
 
-public class ListaArtistas {
+public class ListaArtistas{
     private ArrayList<Artista> artistas;
 
     public ListaArtistas(){

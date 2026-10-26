@@ -14,7 +14,7 @@ public class Menus {
         System.out.println("=====Canciones=====");
         System.out.println("1. Agregar canción");
         System.out.println("2. Eliminar canción");
-        System.out.println("3. Mostrar canciones");
+        System.out.println("3. Mostrar todas las canciones");
         System.out.println("4. Ordenar canciones");
         System.out.println("5. Búsqueda lineal");
         System.out.println("6. Búsqueda binaria");
