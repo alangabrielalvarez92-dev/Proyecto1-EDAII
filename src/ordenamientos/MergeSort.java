@@ -46,7 +46,7 @@ public class MergeSort {
             i++;
             k++;
         }while (j<der.size()){
-            lista.set(k, der.get(i));
+            lista.set(k, der.get(j));
             j++;
             k++;
         }
