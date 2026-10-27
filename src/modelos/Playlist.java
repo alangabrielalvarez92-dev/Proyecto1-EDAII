@@ -9,9 +9,10 @@ public class Playlist {
     private int id;
     private String nombre;
     private ListaCanciones canciones;
+    private static int contador=0;
 
-    public Playlist(int id, String nombre) {
-        this.id = id;
+    public Playlist(String nombre) {
+        this.id = contador++;
         this.nombre = nombre;
         this.canciones = new ListaCanciones();
     }

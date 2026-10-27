@@ -64,6 +64,7 @@ public class ListaCanciones {
             System.out.println("La lista de canciones esta vacia");
             return;
         }
+        System.out.println("====Canciones Disponibles====");
         for (Cancion cancion : canciones) {
             System.out.println(cancion.toString());
         }
