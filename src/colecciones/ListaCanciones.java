@@ -68,4 +68,10 @@ public class ListaCanciones {
             System.out.println(cancion.toString());
         }
     }
+
+    public boolean estaVacio(){
+        return canciones.isEmpty();
+    }
+
+
 }
