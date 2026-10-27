@@ -1,7 +1,7 @@
 package modelos;
 
 import colecciones.ListaCanciones;
-
+import ordenamientos.*;
 import java.util.*;
 
 public class Playlist {
@@ -44,6 +44,10 @@ public class Playlist {
         return canciones.buscar(id);
     }
 
+    public void ordenar(Comparator<Cancion> criterio) {
+        MergeSort.mergeSort(canciones.getCanciones(), criterio);
+    }
+
     public void mostrarPlaylist() {
         if (canciones.size() == 0) {
             System.out.println(nombre + " se encuentra vacia");
@@ -55,12 +59,11 @@ public class Playlist {
         }
     }
 
-    public void reproducirPlaylist() {
+    public void reproducirPlaylist(Scanner sc) {
         if (canciones.size() == 0) {
             System.out.println("No hay canciones para reproducir");
             return;
         }
-        Scanner sc = new Scanner(System.in);
         for (Cancion c : canciones.getCanciones()) {
             System.out.println("Reproduciendo: " + c);
             System.out.println("Presiona Enter para continuar...");
