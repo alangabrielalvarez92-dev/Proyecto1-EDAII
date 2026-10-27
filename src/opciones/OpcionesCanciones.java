@@ -1,5 +1,8 @@
 package opciones;
 
+import busquedas.BusquedaBinaria;
+import ordenamientos.MergeSort;
+import java.util.List;
 import busquedas.BusquedaLineal;
 import colecciones.ListaArtistas;
 import colecciones.ListaCanciones;
@@ -33,7 +36,9 @@ public class OpcionesCanciones {
                     ordenar(canciones, entrada);
                 }
                 case 5 -> {}
-                case 6 -> {}
+                case 6 -> {
+                    busquedaBinaria(canciones, entrada);
+                }
                 case 7 -> {}
                 case 8 -> {
                     System.out.println("Regresando");
@@ -138,5 +143,27 @@ public class OpcionesCanciones {
 
         } while (opcion != 7);
     }
+
+    public static void busquedaBinaria(ListaCanciones canciones, Scanner entrada){
+    if(canciones.size() == 0){
+        System.out.println("No hay canciones registradas");
+        return;
+    }
+
+    System.out.print("Ingresa el nombre de la canción: ");
+    String nombre = entrada.nextLine();
+
+    MergeSort.mergeSort(canciones.getCanciones(), (a, b) -> a.getNombre().compareToIgnoreCase(b.getNombre()));
+    List<Cancion> resultado = BusquedaBinaria.busquedaBinaria(canciones.getCanciones(), c -> c.getNombre(), nombre);
+
+    if(resultado.isEmpty()){
+        System.out.println("No se encontró la canción");
+    }else{
+        System.out.println("Canciones encontradas:");
+        for(Cancion c : resultado){
+            System.out.println(c);
+        }
+    }
+}
 
 }
