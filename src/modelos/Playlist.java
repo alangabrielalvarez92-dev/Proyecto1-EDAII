@@ -25,8 +25,12 @@ public class Playlist {
         return nombre;
     }
 
-    public List<Cancion> getCanciones() {
-        return canciones.getCanciones();
+    public ListaCanciones getCanciones() {
+        return canciones;
+    }
+
+    public boolean isEmpty(){
+        return canciones.isEmpty()
     }
 
     public void addCancion(Cancion c) {
