@@ -129,13 +129,13 @@ public class OpcionesCanciones {
                 ArrayList<Cancion> copia = new ArrayList<>(canciones.getCanciones());
 
                 Comparator<Cancion> criterio = switch (opcion) {
-                    case 1 -> Comparator.comparing(Cancion::getNombre, String.CASE_INSENSITIVE_ORDER);
-                    case 2 -> Comparator.comparing(Cancion::getNombre, String.CASE_INSENSITIVE_ORDER).reversed();
-                    case 3 -> Comparator.comparing((Cancion c) -> c.getArtista().getNombre(), String.CASE_INSENSITIVE_ORDER);
-                    case 4 -> Comparator.comparing((Cancion c) -> c.getArtista().getNombre(), String.CASE_INSENSITIVE_ORDER).reversed();
+                    case 1 -> (a, b) -> a.getNombre().compareToIgnoreCase(b.getNombre());
+                    case 2 -> (a, b) -> b.getNombre().compareToIgnoreCase(a.getNombre());
+                    case 3 -> (a, b) -> a.getArtista().getNombre().compareToIgnoreCase(b.getArtista().getNombre());
+                    case 4 -> (a, b) -> b.getArtista().getNombre().compareToIgnoreCase(a.getArtista().getNombre());
                     case 5 -> Comparator.comparingInt(Cancion::getId);
                     case 6 -> Comparator.comparingInt(Cancion::getId).reversed();
-                    default -> throw new IllegalArgumentException("Opción de ordenamiento inválida");
+                    default -> null;
                 };
                 MergeSort.mergeSort(copia, criterio);
 
@@ -154,25 +154,26 @@ public class OpcionesCanciones {
     }
 
     public static void busquedaBinaria(ListaCanciones canciones, Scanner entrada){
-    if(canciones.size() == 0){
-        System.out.println("No hay canciones registradas");
-        return;
-    }
+        if(canciones.size() == 0){
+            System.out.println("No hay canciones registradas");
+            return;
+        }
 
-    System.out.print("Ingresa el nombre de la canción: ");
-    String nombre = entrada.nextLine();
+        ArrayList<Cancion> copia = new ArrayList<>(canciones.getCanciones());
 
-    MergeSort.mergeSort(canciones.getCanciones(), (a, b) -> a.getNombre().compareToIgnoreCase(b.getNombre()));
-    List<Cancion> resultado = BusquedaBinaria.busquedaBinaria(canciones.getCanciones(), c -> c.getNombre(), nombre);
+        System.out.print("Ingresa el nombre de la canción: ");
+        String nombre = entrada.nextLine();
 
-    if(resultado.isEmpty()){
-        System.out.println("No se encontró la canción");
-    }else{
-        System.out.println("Canciones encontradas:");
-        for(Cancion c : resultado){
-            System.out.println(c);
+        MergeSort.mergeSort(copia, (a, b) -> a.getNombre().compareToIgnoreCase(b.getNombre()));
+        List<Cancion> coincidencias = BusquedaBinaria.busquedaBinaria(copia, Cancion::getNombre, nombre);
+
+        if(coincidencias.isEmpty()){
+            System.out.println("No se encontró la canción");
+        }else{
+            System.out.println("Canciones encontradas:");
+            for(Cancion cancion : coincidencias){
+            System.out.println(cancion);
+            }
         }
     }
-    }
-
 }
