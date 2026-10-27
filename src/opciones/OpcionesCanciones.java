@@ -10,10 +10,10 @@ import modelos.Artista;
 import modelos.Cancion;
 import utilidades.Menus;
 import utilidades.Utilidades;
-import ordenamientos.MergeSort;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class OpcionesCanciones {
     public static void ejecutar(ListaCanciones canciones, ListaArtistas artistas, Scanner entrada){
@@ -128,7 +128,16 @@ public class OpcionesCanciones {
 
                 ArrayList<Cancion> copia = new ArrayList<>(canciones.getCanciones());
 
-                MergeSort.mergeSort(copia, opcion);
+                Comparator<Cancion> criterio = switch (opcion) {
+                    case 1 -> Comparator.comparing(Cancion::getNombre, String.CASE_INSENSITIVE_ORDER);
+                    case 2 -> Comparator.comparing(Cancion::getNombre, String.CASE_INSENSITIVE_ORDER).reversed();
+                    case 3 -> Comparator.comparing((Cancion c) -> c.getArtista().getNombre(), String.CASE_INSENSITIVE_ORDER);
+                    case 4 -> Comparator.comparing((Cancion c) -> c.getArtista().getNombre(), String.CASE_INSENSITIVE_ORDER).reversed();
+                    case 5 -> Comparator.comparingInt(Cancion::getId);
+                    case 6 -> Comparator.comparingInt(Cancion::getId).reversed();
+                    default -> throw new IllegalArgumentException("Opción de ordenamiento inválida");
+                };
+                MergeSort.mergeSort(copia, criterio);
 
                 System.out.println("Canciones ordenadas:");
                 for (Cancion cancion : copia) {
@@ -164,6 +173,6 @@ public class OpcionesCanciones {
             System.out.println(c);
         }
     }
-}
+    }
 
 }
