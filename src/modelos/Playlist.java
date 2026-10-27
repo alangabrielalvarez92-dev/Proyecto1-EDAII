@@ -54,10 +54,8 @@ public class Playlist {
             System.out.println(nombre + " se encuentra vacia");
             return;
         }
-        System.out.println(nombre);
-        for (Cancion c : canciones.getCanciones()) {
-            System.out.println(c);
-        }
+        System.out.println("====="+nombre+"=====");
+        canciones.mostrarCanciones();
     }
 
     public void reproducirPlaylist(Scanner sc) {
