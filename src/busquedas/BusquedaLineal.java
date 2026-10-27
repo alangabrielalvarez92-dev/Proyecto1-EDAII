@@ -2,7 +2,7 @@ package busquedas;
 import colecciones.ListaArtistas;
 import colecciones.ListaCanciones;
 import modelos.*;
-import java.util.List;
+
 import java.util.ArrayList;
 
 public class BusquedaLineal {
@@ -25,14 +25,26 @@ public class BusquedaLineal {
       return null;
     }
 
-    public static Cancion busquedaLinealCancion(ListaCanciones canciones, String nombre){
+    public static ListaCanciones busquedaLinealCancion(ListaCanciones canciones, String nombre){
+        ListaCanciones coincidencias = new ListaCanciones();
         for(Cancion cancion: canciones.getCanciones()){
             if(cancion.getNombre().trim().equalsIgnoreCase(nombre.trim())){
-                return cancion;
+                coincidencias.insertar(cancion);
             }
         }
-        return null;
+        return coincidencias;
     }
+
+    public static boolean busquedaLinealID(ListaCanciones canciones, int id){
+        for(Cancion cancion: canciones.getCanciones()){
+            if(cancion.getId() == id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
     
 

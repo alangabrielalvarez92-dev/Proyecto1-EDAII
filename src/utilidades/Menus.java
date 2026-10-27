@@ -23,6 +23,18 @@ public class Menus {
         System.out.print("Ingresa una opción: ");
     }
 
+    public static void mostrarMenuOrdenarCanciones(){
+        System.out.println("=====Ordenar canciones por: ======");
+        System.out.println("1. Nombre ascendente");
+        System.out.println("2. Nombre descendente");
+        System.out.println("3. Artista ascendente");
+        System.out.println("4. Artista descendente");
+        System.out.println("5. ID ascendente");
+        System.out.println("6. ID descendente");
+        System.out.println("7. Regresar");
+        System.out.print("Ingresa una opción: ");
+    }
+
     public static void mostrarMenuArtistas(){
         System.out.println("=====Artistas=====");
         System.out.println("1. Agregar artista");

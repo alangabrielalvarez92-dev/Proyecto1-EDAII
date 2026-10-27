@@ -7,8 +7,10 @@ import modelos.Artista;
 import modelos.Cancion;
 import utilidades.Menus;
 import utilidades.Utilidades;
+import ordenamientos.MergeSort;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class OpcionesCanciones {
     public static void ejecutar(ListaCanciones canciones, ListaArtistas artistas, Scanner entrada){
@@ -24,12 +26,18 @@ public class OpcionesCanciones {
                 case 2 -> {
                     eliminarCancion(canciones, entrada);
                 }
-                case 3 -> {}
-                case 4 -> {}
+                case 3 -> {
+                    canciones.mostrarCanciones();
+                }
+                case 4 -> {
+                    ordenar(canciones, entrada);
+                }
                 case 5 -> {}
                 case 6 -> {}
                 case 7 -> {}
-                case 8 -> {}
+                case 8 -> {
+                    System.out.println("Regresando");
+                }
                 default -> {
                     System.out.println("Ingresa una opción válida!");
                 }
@@ -78,7 +86,57 @@ public class OpcionesCanciones {
         System.out.print("Ingresa el nombre de la canción: ");
         String nombre = entrada.nextLine();
 
-        Cancion cancion = BusquedaLineal.busquedaLinealCancion(canciones, nombre);
+        ListaCanciones coincidencias = BusquedaLineal.busquedaLinealCancion(canciones, nombre);
+
+        if(coincidencias.getCanciones().isEmpty()){
+            System.out.println("La canción no existe");
+            return;
+        }
+
+        System.out.println("Coincidencias de la búsqueda:");
+        canciones.mostrarCanciones();
+
+        System.out.print("Ingresa el ID de la canción que deseas eliminar: ");
+        int id = Utilidades.leerEntero(entrada);
+
+        if (!BusquedaLineal.busquedaLinealID(coincidencias, id)) {
+            System.out.println("ID inválido");
+            return;
+        }
+
+        if(canciones.eliminar(id)){
+            System.out.println("Canción eliminada exitosamente!");
+        }
+
+        System.out.println("No se puedo eliminar la canción");
+
+    }
+
+    public static void ordenar(ListaCanciones canciones, Scanner entrada) {
+        int opcion;
+
+        do {
+            Menus.mostrarMenuOrdenarCanciones();
+            opcion = Utilidades.leerEntero(entrada);
+
+            if (opcion >= 1 && opcion <= 6) {
+
+                ArrayList<Cancion> copia = new ArrayList<>(canciones.getCanciones());
+
+                MergeSort.mergeSort(copia, opcion);
+
+                System.out.println("Canciones ordenadas:");
+                for (Cancion cancion : copia) {
+                    System.out.println(cancion);
+                }
+
+            } else if (opcion == 7) {
+                System.out.println("Regresando...");
+            } else {
+                System.out.println("Opción inválida");
+            }
+
+        } while (opcion != 7);
     }
 
 }

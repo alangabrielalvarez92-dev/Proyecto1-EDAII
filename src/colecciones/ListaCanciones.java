@@ -65,7 +65,7 @@ public class ListaCanciones {
             return;
         }
         for (Cancion cancion : canciones) {
-            System.out.println(cancion);
+            System.out.println(cancion.toString());
         }
     }
 }
