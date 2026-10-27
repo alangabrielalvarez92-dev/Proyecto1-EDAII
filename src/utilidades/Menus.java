@@ -1,7 +1,32 @@
 package utilidades;
 
 public class Menus {
-    public static void mostrarMenuPrincipal(){
+
+    public static void mostrarBanner() {
+        System.out.println("+-------------------------------------------------------+");
+        System.out.println("|                                                       |");
+        System.out.println("|                            _     _   _____   ___      |");
+        System.out.println("|      ___   _ __     ___   | |_  (_) |  ___| |_ _|     |");
+        System.out.println("|     / __| | '_ \\   / _ \\  | __| | | | |_     | |      |");
+        System.out.println("|     \\__ \\ | |_) | | (_) | | |_  | | |  _|    | |      |");
+        System.out.println("|     |___/ | .__/   \\___/   \\__| |_| |_|     |___|     |");
+        System.out.println("|           |_|                                         |");
+        System.out.println("|                                                       |");
+        System.out.println("|    Reproductor de musica  *  EDA II  *  Equipo 07     |");
+        System.out.println("+-------------------------------------------------------+");
+        System.out.println("|            |       | |           |         |          |");
+        System.out.println("|        |   | |     | |   |     | |     |   | |        |");
+        System.out.println("|        | | | |   | | | | |   | | | |   | | | |        |");
+        System.out.println("|      | | | | | | | | | | | | | | | | | | | | | |      |");
+        System.out.println("+-------------------------------------------------------+");
+        System.out.println("|   > Reproduciendo:  Tu cancion favorita               |");
+        System.out.println("|   01:24 [==============o---------------------] 03:45  |");
+        System.out.println("|   [ |<< ]   [ || ]   [ >>| ]   VOL [||||||....]       |");
+        System.out.println("+-------------------------------------------------------+");
+        System.out.println();
+    }
+
+    public static void mostrarMenuPrincipal() {
         System.out.println("=====SpotiFI=====");
         System.out.println("1. Canciones");
         System.out.println("2. Artistas");
@@ -10,7 +35,7 @@ public class Menus {
         System.out.print("Ingresa una opción: ");
     }
 
-    public static void mostrarMenuCanciones(){
+    public static void mostrarMenuCanciones() {
         System.out.println("=====Canciones=====");
         System.out.println("1. Agregar canción");
         System.out.println("2. Eliminar canción");
@@ -23,7 +48,7 @@ public class Menus {
         System.out.print("Ingresa una opción: ");
     }
 
-    public static void mostrarMenuArtistas(){
+    public static void mostrarMenuArtistas() {
         System.out.println("=====Artistas=====");
         System.out.println("1. Agregar artista");
         System.out.println("2. Eliminar artista");
@@ -34,7 +59,7 @@ public class Menus {
         System.out.print("Ingresa una opción: ");
     }
 
-    public static void mostrarMenuPlaylist(){
+    public static void mostrarMenuPlaylist() {
         System.out.println("=====Playlist=====");
         System.out.println("1. Nueva Playlist");
         System.out.println("2. Eliminar Playlist");

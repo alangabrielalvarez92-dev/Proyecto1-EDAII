@@ -16,6 +16,7 @@ public class Principal {
         ListaCanciones canciones = new ListaCanciones();
 
         int opcion;
+        Menus.mostrarBanner();
 
         do{
             Menus.mostrarMenuPrincipal();
