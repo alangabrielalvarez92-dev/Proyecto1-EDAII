@@ -39,7 +39,7 @@ public class Menus {
         System.out.println("1. Nueva Playlist");
         System.out.println("2. Eliminar Playlist");
         System.out.println("3. Mostrar Playlists");
-        System.out.println("4. Agregar canción a Playlist");
+        System.out.println("4. Agregar canciones a Playlist");
         System.out.println("5. Eliminar canción de la Playlist");
         System.out.println("6. Mostrar canciones de la Playlist");
         System.out.println("7. Ordenar canciones de la Playlist");
