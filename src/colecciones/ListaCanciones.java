@@ -67,6 +67,7 @@ public class ListaCanciones {
         System.out.println("====Canciones Disponibles====");
         for (Cancion cancion : canciones) {
             System.out.println(cancion.toString());
+            System.out.println("-------------------------");
         }
     }
 
