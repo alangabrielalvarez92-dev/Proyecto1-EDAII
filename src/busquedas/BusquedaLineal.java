@@ -2,6 +2,8 @@ package busquedas;
 import colecciones.ListaArtistas;
 import colecciones.ListaCanciones;
 import modelos.*;
+import java.util.*;
+import java.util.function.Function;
 
 import java.util.ArrayList;
 
@@ -42,6 +44,18 @@ public class BusquedaLineal {
             }
         }
         return false;
+    }
+
+    public static <T> List<T> busquedaLineal(List<T> lista, T buscado, Comparator<T> criterio) {
+        List<T> coincidencias = new ArrayList<>();
+
+        for (T elemento : lista) {
+            if (criterio.compare(elemento, buscado) == 0) {
+                coincidencias.add(elemento);
+            }
+        }
+
+        return coincidencias;
     }
 
 
