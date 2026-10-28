@@ -19,7 +19,7 @@ public class QuickSort {
         Artista pivote= artistas.getArtista(fin);
         int i= inicio-1;
         for(int j=inicio; j<=fin-1;j++){
-            int comparacion =artistas.getArtista(j).getNombre().compareTo(pivote.getNombre());
+            int comparacion =artistas.getArtista(j).getNombre().compareToIgnoreCase(pivote.getNombre());
             if(comparacion<=0){
                 i=i+1;
                 artistas.swapArtista(i, j);
@@ -41,7 +41,7 @@ public class QuickSort {
         Cancion pivote= canciones.getCancion(fin);
         int i= inicio-1;
         for(int j=inicio; j<=fin-1;j++){
-            int comparacion =canciones.getCancion(j).getNombre().compareTo(pivote.getNombre());
+            int comparacion =canciones.getCancion(j).getNombre().compareToIgnoreCase(pivote.getNombre());
             if(comparacion<=0){
                 i=i+1;
                 canciones.swapCancion(i, j);
@@ -50,9 +50,6 @@ public class QuickSort {
         canciones.swapCancion(i+1, fin);
         return i+1;
     }
-
-
-
 
 
 }
