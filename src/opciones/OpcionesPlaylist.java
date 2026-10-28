@@ -141,7 +141,7 @@ public class OpcionesPlaylist {
         System.out.println("Coincidencias de la búsqueda:");
         coincidencias.mostrarCanciones();
 
-        System.out.print("Ingresa el ID de la canción que deseas eliminar: ");
+        System.out.print("Ingresa el ID de la canción que deseas agregar: ");
         int id = Utilidades.leerEntero(entrada);
 
         if (!BusquedaLineal.busquedaLinealID(coincidencias, id)) {

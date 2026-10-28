@@ -112,9 +112,9 @@ public class OpcionesCanciones {
         if(canciones.eliminar(id)){
             System.out.println("Canción eliminada exitosamente!");
         }
-
-        System.out.println("No se puedo eliminar la canción");
-
+        else{
+        System.out.println("No se puede eliminar la canción");
+        }
     }
 
     public static void ordenar(ListaCanciones canciones, Scanner entrada) {
