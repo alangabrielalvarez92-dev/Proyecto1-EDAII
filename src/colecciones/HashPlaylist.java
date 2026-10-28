@@ -21,6 +21,7 @@ public class HashPlaylist {
         }
     }
 
+
     public int funcionHash(int id){
         if(id < 0){
             System.out.println("El ID no puede ser negativo");
@@ -94,9 +95,20 @@ public class HashPlaylist {
             System.out.println("No hay playlists registradas");
             return;
         }
+        System.out.println("=====PlayList Creadas=====");
         for (Playlist playlist : getPlaylists()) {
-            System.out.println(playlist);
+            playlist.mostrarPlaylist();
+            System.out.println("=====================");
         }
+    }
+
+    public boolean isEmpty(){
+        for(ArrayList<Playlist> playlist: tabla){
+            if(playlist.isEmpty()){
+                return false;
+            }
+        }
+        return true;
     }
 
 }

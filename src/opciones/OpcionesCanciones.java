@@ -99,7 +99,7 @@ public class OpcionesCanciones {
         }
 
         System.out.println("Coincidencias de la búsqueda:");
-        canciones.mostrarCanciones();
+        coincidencias.mostrarCanciones();
 
         System.out.print("Ingresa el ID de la canción que deseas eliminar: ");
         int id = Utilidades.leerEntero(entrada);

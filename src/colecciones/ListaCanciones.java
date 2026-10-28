@@ -45,6 +45,7 @@ public class ListaCanciones {
         return canciones;
     }
 
+    
     public Cancion getCancion(int indice){
         return canciones.get(indice);
     }
@@ -64,8 +65,16 @@ public class ListaCanciones {
             System.out.println("La lista de canciones esta vacia");
             return;
         }
+        System.out.println("====Canciones Disponibles====");
         for (Cancion cancion : canciones) {
             System.out.println(cancion.toString());
+            System.out.println("-------------------------");
         }
     }
+
+    public boolean estaVacio(){
+        return canciones.isEmpty();
+    }
+
+
 }

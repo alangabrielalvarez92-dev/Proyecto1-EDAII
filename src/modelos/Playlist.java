@@ -9,9 +9,10 @@ public class Playlist {
     private int id;
     private String nombre;
     private ListaCanciones canciones;
+    private static int contador=0;
 
-    public Playlist(int id, String nombre) {
-        this.id = id;
+    public Playlist(String nombre) {
+        this.id = contador++;
         this.nombre = nombre;
         this.canciones = new ListaCanciones();
     }
@@ -24,8 +25,12 @@ public class Playlist {
         return nombre;
     }
 
-    public List<Cancion> getCanciones() {
-        return canciones.getCanciones();
+    public ListaCanciones getCanciones() {
+        return canciones;
+    }
+
+    public boolean isEmpty(){
+        return canciones.isEmpty()
     }
 
     public void addCancion(Cancion c) {
@@ -53,10 +58,8 @@ public class Playlist {
             System.out.println(nombre + " se encuentra vacia");
             return;
         }
-        System.out.println(nombre);
-        for (Cancion c : canciones.getCanciones()) {
-            System.out.println(c);
-        }
+        System.out.println("====="+nombre+"=====");
+        canciones.mostrarCanciones();
     }
 
     public void reproducirPlaylist(Scanner sc) {

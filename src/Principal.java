@@ -29,7 +29,7 @@ public class Principal {
                     OpcionesArtistas.ejecutar(artistas, canciones, playlists, entrada);
                 }
                 case 3 ->{
-                    OpcionesPlaylist.ejecutar(playlists,entrada);
+                    OpcionesPlaylist.ejecutar(playlists,entrada,canciones);
                 }
                 case 4 ->{
                     System.out.println("Saliendo de SpotiFI");
