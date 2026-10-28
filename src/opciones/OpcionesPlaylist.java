@@ -41,13 +41,16 @@ public class OpcionesPlaylist {
                     
                 }
                 case 8->{
-                    
+                    buscarCancionPlayList(playlist, entrada);   
                 }
                 case 9->{
                 reproducirPlayList(playlist, entrada);               
                 }
                 case 10->{
                     System.out.println("Regresando");
+                }
+                default->{
+                    System.out.println("Ingrese una opción válida!");
                 }
 
             }
@@ -310,7 +313,25 @@ public class OpcionesPlaylist {
         }  
         playlist.buscar(id).reproducirPlaylist(entrada);
     }
+
+
+    }
+
+    public static void buscarCancionPlayList(HashPlaylist playlist, Scanner entrada){
+        if(!playlist.isEmpty()){
+        System.out.println("Ingrese el ID de la PlayList que desea reproducir");
+        int id=Utilidades.seleccionarIdPlayList(playlist, entrada);
+        if(id==-1){
+            return;
+        }   
+        OpcionesCanciones.busquedaBinaria(playlist.buscar(id).getCanciones(), entrada);
+
+        }
+        else{
+            System.out.println("No hay ninguna PlayList registrada");
+        }
     }
 
 }
+
 
