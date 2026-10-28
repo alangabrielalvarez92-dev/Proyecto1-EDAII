@@ -19,6 +19,9 @@ public class Utilidades {
             System.out.println("Ingrese un ID valido o presione -1 para salir");
             id=Utilidades.leerEntero(entrada);
         }
+        if(id==-1){
+            System.out.println("Regresando...");
+        }
         return id;
     }
     

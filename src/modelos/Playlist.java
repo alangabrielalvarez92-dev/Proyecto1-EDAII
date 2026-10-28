@@ -29,10 +29,6 @@ public class Playlist {
         return canciones;
     }
 
-    public boolean isEmpty(){
-        return canciones.isEmpty()
-    }
-
     public void addCancion(Cancion c) {
         if (!canciones.insertar(c)) {
             System.out.println("La cancion no es valida o ya existe en la playlist.");
@@ -58,7 +54,7 @@ public class Playlist {
             System.out.println(nombre + " se encuentra vacia");
             return;
         }
-        System.out.println("====="+nombre+"=====");
+        System.out.println("\n====="+nombre+"=====");
         canciones.mostrarCanciones();
     }
 

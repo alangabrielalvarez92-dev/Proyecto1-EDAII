@@ -26,7 +26,7 @@ public class Menus {
     }
 
     public static void mostrarMenuPrincipal(){
-        System.out.println("=====SpotiFI=====");
+        System.out.println("\n=====SpotiFI=====");
         System.out.println("1. Canciones");
         System.out.println("2. Artistas");
         System.out.println("3. Playlists");
@@ -35,7 +35,7 @@ public class Menus {
     }
 
     public static void mostrarMenuCanciones(){
-        System.out.println("=====Canciones=====");
+        System.out.println("\n=====Canciones=====");
         System.out.println("1. Agregar canción");
         System.out.println("2. Eliminar canción");
         System.out.println("3. Mostrar todas las canciones");
@@ -48,7 +48,7 @@ public class Menus {
     }
 
     public static void mostrarMenuOrdenarCanciones(){
-        System.out.println("=====Ordenar canciones por: ======");
+        System.out.println("\n=====Ordenar canciones por: ======");
         System.out.println("1. Nombre ascendente");
         System.out.println("2. Nombre descendente");
         System.out.println("3. Artista ascendente");
@@ -60,7 +60,7 @@ public class Menus {
     }
 
     public static void mostrarMenuArtistas(){
-        System.out.println("=====Artistas=====");
+        System.out.println("\n=====Artistas=====");
         System.out.println("1. Agregar artista");
         System.out.println("2. Eliminar artista");
         System.out.println("3. Mostrar artistas");
@@ -71,7 +71,7 @@ public class Menus {
     }
 
     public static void mostrarMenuPlaylist(){
-        System.out.println("=====Playlist=====");
+        System.out.println("\n=====Playlist=====");
         System.out.println("1. Nueva Playlist");
         System.out.println("2. Eliminar Playlist");
         System.out.println("3. Mostrar Playlists");
