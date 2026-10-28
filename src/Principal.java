@@ -26,7 +26,7 @@ public class Principal {
                     OpcionesCanciones.ejecutar(canciones,artistas,entrada);
                 }
                 case 2 ->{
-                    OpcionesArtistas.ejecutar(artistas,entrada);
+                    OpcionesArtistas.ejecutar(artistas, canciones, playlists, entrada);
                 }
                 case 3 ->{
                     OpcionesPlaylist.ejecutar(playlists,entrada);
