@@ -30,7 +30,7 @@ public class Playlist {
     }
 
     public boolean isEmpty(){
-        return canciones.isEmpty()
+        return canciones.estaVacio();
     }
 
     public void addCancion(Cancion c) {
