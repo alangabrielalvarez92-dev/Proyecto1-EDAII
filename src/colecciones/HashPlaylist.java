@@ -97,6 +97,7 @@ public class HashPlaylist {
         }
         System.out.println("=====PlayList Creadas=====");
         for (Playlist playlist : getPlaylists()) {
+            System.out.println(playlist);
             playlist.mostrarPlaylist();
             System.out.println("=====================");
         }

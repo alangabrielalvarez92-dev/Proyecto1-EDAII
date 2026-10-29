@@ -1,6 +1,8 @@
 package opciones;
 
 import busquedas.BusquedaBinaria;
+import colecciones.HashPlaylist;
+import modelos.Playlist;
 import ordenamientos.MergeSort;
 import java.util.List;
 import busquedas.BusquedaLineal;
@@ -16,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class OpcionesCanciones {
-    public static void ejecutar(ListaCanciones canciones, ListaArtistas artistas, Scanner entrada){
+    public static void ejecutar(ListaCanciones canciones, ListaArtistas artistas, HashPlaylist playlists, Scanner entrada){
         int opcion;
 
         do{
@@ -27,7 +29,7 @@ public class OpcionesCanciones {
                     agregarCancion(canciones, artistas, entrada);
                 }
                 case 2 -> {
-                    eliminarCancion(canciones, entrada);
+                    eliminarCancion(canciones, playlists, entrada);
                 }
                 case 3 -> {
                     canciones.mostrarCanciones();
@@ -35,11 +37,15 @@ public class OpcionesCanciones {
                 case 4 -> {
                     ordenar(canciones, entrada);
                 }
-                case 5 -> {}
+                case 5 -> {
+                    busquedaLineal(canciones, entrada);
+                }
                 case 6 -> {
                     busquedaBinaria(canciones, entrada);
                 }
-                case 7 -> {}
+                case 7 -> {
+                    buscarPorId(canciones, entrada);
+                }
                 case 8 -> {
                     System.out.println("Regresando");
                 }
@@ -53,10 +59,10 @@ public class OpcionesCanciones {
 
     public static void agregarCancion(ListaCanciones canciones, ListaArtistas artistas, Scanner entrada){
         System.out.print("Ingresa el nombre de la canción: ");
-        String nombre = entrada.nextLine();
+        String nombre = Utilidades.leerTexto(entrada);
 
         System.out.print("Ingresa el nombre del artista: ");
-        String nombreArtista = entrada.nextLine();
+        String nombreArtista = Utilidades.leerTexto(entrada);
 
         Artista artista = BusquedaLineal.busquedaLinealArtista(artistas, nombreArtista);
 
@@ -80,20 +86,26 @@ public class OpcionesCanciones {
             }
         }
 
-        if(canciones.insertar(new Cancion(nombre, artista))){
+        Cancion cancion = new Cancion(nombre, artista);
+
+        if(canciones.insertar(cancion)){
             System.out.println("La canción se agregó exitosamente!");
+            artista.addCancion(cancion);
         }else{
             System.out.println("No se pudo agregar la canción");
         }
     }
 
-    public static void eliminarCancion(ListaCanciones canciones, Scanner entrada){
+
+    public static void eliminarCancion(ListaCanciones canciones, HashPlaylist playlists, Scanner entrada) {
+
         System.out.print("Ingresa el nombre de la canción: ");
-        String nombre = entrada.nextLine();
+        String nombre = Utilidades.leerTexto(entrada);
 
-        ListaCanciones coincidencias = BusquedaLineal.busquedaLinealCancion(canciones, nombre);
+        ListaCanciones coincidencias =
+                BusquedaLineal.busquedaLinealCancion(canciones, nombre);
 
-        if(coincidencias.getCanciones().isEmpty()){
+        if (coincidencias.getCanciones().isEmpty()) {
             System.out.println("La canción no existe");
             return;
         }
@@ -109,15 +121,56 @@ public class OpcionesCanciones {
             return;
         }
 
-        if(canciones.eliminar(id)){
-            System.out.println("Canción eliminada exitosamente!");
-        }
-        else{
-        System.out.println("No se puede eliminar la canción");
+        Cancion cancion = canciones.buscar(id);
+
+        if (canciones.eliminar(id)) {
+
+            cancion.getArtista().removeCancion(cancion);
+
+            for (Playlist p : playlists.getPlaylists()) {
+                p.removeCancion(cancion);
+            }
+
+            System.out.println("¡Canción eliminada exitosamente!");
+        } else {
+            System.out.println("No se puede eliminar la canción");
         }
     }
 
+
+    public static void busquedaLineal(ListaCanciones canciones, Scanner entrada) {
+        if (canciones.estaVacio()) {
+            System.out.println("No hay canciones registradas");
+            return;
+        }
+        System.out.print("Ingresa el nombre de la canción: ");
+        ListaCanciones coincidencias = BusquedaLineal.busquedaLinealCancion(canciones, Utilidades.leerTexto(entrada));
+        if (coincidencias.estaVacio()) {
+            System.out.println("No se encontró la canción");
+        } else {
+            coincidencias.mostrarCanciones();
+        }
+    }
+
+    public static void buscarPorId(ListaCanciones canciones, Scanner entrada) {
+        if (canciones.estaVacio()) {
+            System.out.println("No hay canciones registradas");
+            return;
+        }
+        System.out.print("Ingresa el ID de la canción: ");
+        Cancion cancion = canciones.buscar(Utilidades.leerEntero(entrada));
+        System.out.println(cancion == null ? "No se encontró la canción" : cancion);
+    }
+
     public static void ordenar(ListaCanciones canciones, Scanner entrada) {
+        ordenar(canciones, entrada, false);
+    }
+
+    public static void ordenar(ListaCanciones canciones, Scanner entrada, boolean guardarOrden) {
+        if (canciones.estaVacio()) {
+            System.out.println("No hay canciones para ordenar");
+            return;
+        }
         int opcion;
 
         do {
@@ -126,7 +179,7 @@ public class OpcionesCanciones {
 
             if (opcion >= 1 && opcion <= 6) {
 
-                ArrayList<Cancion> copia = new ArrayList<>(canciones.getCanciones());
+                List<Cancion> copia = guardarOrden ? canciones.getCanciones() : new ArrayList<>(canciones.getCanciones());
 
                 Comparator<Cancion> criterio = switch (opcion) {
                     case 1 -> (a, b) -> a.getNombre().compareToIgnoreCase(b.getNombre());
@@ -135,7 +188,7 @@ public class OpcionesCanciones {
                     case 4 -> (a, b) -> b.getArtista().getNombre().compareToIgnoreCase(a.getArtista().getNombre());
                     case 5 -> Comparator.comparingInt(Cancion::getId);
                     case 6 -> Comparator.comparingInt(Cancion::getId).reversed();
-                    default -> null;
+                    default -> throw new IllegalArgumentException("Opción inválida");
                 };
                 MergeSort.mergeSort(copia, criterio);
 
@@ -162,7 +215,7 @@ public class OpcionesCanciones {
         ArrayList<Cancion> copia = new ArrayList<>(canciones.getCanciones());
 
         System.out.print("Ingresa el nombre de la canción: ");
-        String nombre = entrada.nextLine();
+        String nombre = Utilidades.leerTexto(entrada);
 
         MergeSort.mergeSort(copia, (a, b) -> a.getNombre().compareToIgnoreCase(b.getNombre()));
         List<Cancion> coincidencias = BusquedaBinaria.busquedaBinaria(copia, Cancion::getNombre, nombre);

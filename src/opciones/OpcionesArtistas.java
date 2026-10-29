@@ -41,10 +41,10 @@ public class OpcionesArtistas {
 
     public static Artista agregarArtista(ListaArtistas artistas, Scanner entrada) {
         System.out.print("Nombre del artista: ");
-        String nombre = entrada.nextLine();
+        String nombre = Utilidades.leerTexto(entrada);
 
         System.out.print("Género musical: ");
-        String genero = entrada.nextLine();
+        String genero = Utilidades.leerTexto(entrada);
 
         Artista artista = new Artista(nombre, genero);
 
@@ -67,7 +67,7 @@ public class OpcionesArtistas {
 
     public static void eliminarArtista(ListaArtistas artistas, ListaCanciones canciones, HashPlaylist playlists, Scanner entrada){
         System.out.print("Nombre del artista a eliminar: ");
-        String nombre = entrada.nextLine();
+        String nombre = Utilidades.leerTexto(entrada);
 
         Artista artista = artistas.buscarArtista(nombre);
 
@@ -126,7 +126,7 @@ public class OpcionesArtistas {
 
     public static void buscarArtistaYMostrar(ListaArtistas artistas, Scanner entrada){
         System.out.print("Nombre del artista: ");
-        String nombre = entrada.nextLine();
+        String nombre = Utilidades.leerTexto(entrada);
 
         Artista artista = artistas.buscarArtista(nombre);
 

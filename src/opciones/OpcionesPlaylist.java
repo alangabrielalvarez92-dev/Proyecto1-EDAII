@@ -19,7 +19,7 @@ public class OpcionesPlaylist {
             opcion=Utilidades.leerEntero(entrada);
             switch(opcion){
                 case 1->{
-                 nuevaPlaylist(playlist,cancionesGenerales, entrada);   
+                 nuevaPlaylist(playlist,cancionesGenerales, entrada);
                 }
                 case 2->{
                     eliminarPlayList(playlist, entrada);
@@ -28,23 +28,22 @@ public class OpcionesPlaylist {
                     playlist.mostrarPlaylists();
                 }
                 case 4->{
-                agregarCancionesPlayList(playlist, cancionesGenerales, entrada);
+                    agregarCancionesPlayList(playlist, cancionesGenerales, entrada);
                 }
                 case 5->{
-                eliminarCancionesPlayList(playlist, entrada);
+                    eliminarCancionesPlayList(playlist, entrada);
                 }
                 case 6->{
-                mostrarCancionesPlayList(playlist, entrada);
+                    mostrarCancionesPlayList(playlist, entrada);
                 }
                 case 7->{
                     ordenarCancionesPlayList(playlist, entrada);
-                    
                 }
                 case 8->{
-                    buscarCancionPlayList(playlist, entrada);   
+                    buscarCancionPlayList(playlist, entrada);
                 }
                 case 9->{
-                reproducirPlayList(playlist, entrada);               
+                    reproducirPlayList(playlist, entrada);
                 }
                 case 10->{
                     System.out.println("Regresando");
@@ -54,18 +53,14 @@ public class OpcionesPlaylist {
                 }
 
             }
-
-
         }while(opcion!=10);
-
-
 
     }
 
     public static void nuevaPlaylist(HashPlaylist playlist,ListaCanciones cancionesGenerales ,Scanner entrada){
         int opcion;
         System.out.println("Ingrese el nombre de su nueva PlayList");
-        String nombre = entrada.nextLine();
+        String nombre = Utilidades.leerTexto(entrada);
         Playlist newPlaylist = new Playlist(nombre);
         System.out.println("El ID asignado para su PlayList es: "+newPlaylist.getId());
         System.out.println("Anote dicho ID para busquedas futuras");
@@ -129,7 +124,7 @@ public class OpcionesPlaylist {
         else{
             cancionesGenerales.mostrarCanciones();
             System.out.print("Ingresa el nombre de la canción: ");
-            String nombre = entrada.nextLine();
+            String nombre = Utilidades.leerTexto(entrada);
 
         ListaCanciones coincidencias = BusquedaLineal.busquedaLinealCancion(cancionesGenerales, nombre);
 
@@ -154,41 +149,8 @@ public class OpcionesPlaylist {
             System.out.println("Canción Agregada exitosamente!");
         }
         else{
-        System.out.println("No se pudo agregar: la canción ya está en la playlist");
+            System.out.println("No se pudo agregar: la canción ya está en la playlist");
         }
-
-            /*System.out.println("Agregar canción por:\n1)Nombre\n2)ID");
-            opcion= Utilidades.leerEntero(entrada);
-
-            while(opcion!=1 && opcion!=2){
-                System.out.println("Ingrese una opción valida");
-                opcion= Utilidades.leerEntero(entrada);    
-            }
-            
-            if(opcion==1){
-                System.out.println("Ingrese el nombre de la canción");
-                System.out.println("Escriba tal y como aparece en la lista");
-                String nombre= entrada.nextLine();
-                Cancion newCancion = BusquedaLineal.busquedaLinealCancion(cancionesGenerales, nombre);   
-                if(newCancion!=null){
-                    playlist.buscar(id).addCancion(newCancion);
-                }
-                else{
-                    System.out.println("No se encontró la canción buscada");
-                }
-            }
-            else{
-                System.out.println("Ingrese el ID de su canción");
-                int idCancion= Utilidades.leerEntero(entrada);
-                Cancion newCancion= cancionesGenerales.buscar(idCancion);
-                if(newCancion!=null){
-                    playlist.buscar(id).addCancion(newCancion);
-                }
-                else{
-                    System.out.println("No se encontró la canción buscada");
-                }
-            }*/
-
         }
     }
 
@@ -217,7 +179,6 @@ public class OpcionesPlaylist {
             return;
         }
         cicloEliminarCanciones(playlist, entrada, id);
-
         }
         else{
             System.out.println("Aun no se ha creado ninguna PlayList");
@@ -228,46 +189,38 @@ public class OpcionesPlaylist {
 
     public static void eliminarCancionPlaylist(HashPlaylist playlist, Scanner entrada, int id){
             playlist.buscar(id).mostrarPlaylist();
-           OpcionesCanciones.eliminarCancion(playlist.buscar(id).getCanciones(), entrada);
-            /*System.out.println("Eliminar canción por:\n1)Nombre\n2)ID");
-            int opcion= Utilidades.leerEntero(entrada);
-
-            while(opcion!=1 && opcion!=2){
-                System.out.println("Ingrese una opción valida");
-                opcion= Utilidades.leerEntero(entrada);    
+           ListaCanciones canciones = playlist.buscar(id).getCanciones();
+            if (canciones.estaVacio()) {
+                System.out.println("La playlist no tiene canciones");
+                return;
             }
-            
-            if(opcion==1){
-                System.out.println("Ingrese el nombre de la canción");
-                System.out.println("Escriba tal y como aparece en la lista");
-                String nombre= entrada.nextLine();
-                Cancion newCancion = BusquedaLineal.busquedaLinealCancion(cancionesGenerales, nombre);   
-                if(newCancion!=null){
-                    playlist.buscar(id).removeCancion(newCancion);
-                }
-                else{
-                    System.out.println("No se encontró la canción buscada");
-                }
+            System.out.print("Ingresa el nombre de la canción: ");
+            ListaCanciones coincidencias = BusquedaLineal.busquedaLinealCancion(canciones, Utilidades.leerTexto(entrada));
+            if (coincidencias.estaVacio()) {
+                System.out.println("La canción no existe en esta playlist");
+                return;
             }
-            else{
-                System.out.println("Ingrese el ID de su canción");
-                int idCancion= Utilidades.leerEntero(entrada);
-                Cancion newCancion= cancionesGenerales.buscar(idCancion);
-                if(newCancion!=null){
-                    playlist.buscar(id).removeCancion(newCancion);
-                }
-                else{
-                    System.out.println("No se encontró la canción buscada");
-                }
-            }*/
+            coincidencias.mostrarCanciones();
+            System.out.print("Ingresa el ID de la canción que deseas quitar: ");
+            int idCancion = Utilidades.leerEntero(entrada);
+            if (!BusquedaLineal.busquedaLinealID(coincidencias, idCancion)) {
+                System.out.println("ID inválido");
+                return;
+            }
+            canciones.eliminar(idCancion);
+            System.out.println("Canción retirada de esta playlist");
     }
 
     public static void cicloEliminarCanciones(HashPlaylist playlist, Scanner entrada, int id){
         int opcion=0;
         if(!playlist.buscar(id).getCanciones().estaVacio()){
-        while(opcion!=2){
+        while(opcion!=2 && !playlist.buscar(id).getCanciones().estaVacio()){
             eliminarCancionPlaylist(playlist,entrada, id);
-            System.out.println("Desea ingresar otra canción?");
+            if (playlist.buscar(id).getCanciones().estaVacio()) {
+                System.out.println("La playlist quedó vacía");
+                break;
+            }
+            System.out.println("Desea eliminar otra canción?");
             System.out.println("1)Si\n2)No");
             opcion=Utilidades.leerEntero(entrada);
             while(opcion!=2 && opcion!=1){
@@ -280,7 +233,7 @@ public class OpcionesPlaylist {
             System.out.println("La PlayList no tiene ninguna canción guardada");
         }
         }
-    
+
     public static void mostrarCancionesPlayList(HashPlaylist playlist, Scanner entrada){
         if(!playlist.isEmpty()){
         System.out.println("Ingrese el ID de la PlayList que desea mostrar");
@@ -289,9 +242,11 @@ public class OpcionesPlaylist {
             return;
         }
         playlist.buscar(id).mostrarPlaylist();
+    } else {
+        System.out.println("Aun no se ha creado ninguna playlist");
     }
     }
-    
+
     public static void ordenarCancionesPlayList(HashPlaylist playlist, Scanner entrada){
         if(!playlist.isEmpty()){
         System.out.println("Ingrese el ID de la PlayList que desea ordenar");
@@ -299,7 +254,7 @@ public class OpcionesPlaylist {
         if(id==-1){
             return;
         }
-        OpcionesCanciones.ordenar(playlist.buscar(id).getCanciones(), entrada);
+        OpcionesCanciones.ordenar(playlist.buscar(id).getCanciones(), entrada, true);
     }
 
     else{
@@ -314,7 +269,7 @@ public class OpcionesPlaylist {
         int id=Utilidades.seleccionarIdPlayList(playlist, entrada);
         if(id==-1){
             return;
-        }  
+        }
         playlist.buscar(id).reproducirPlaylist(entrada);
     }
     else{
@@ -330,7 +285,7 @@ public class OpcionesPlaylist {
         int id=Utilidades.seleccionarIdPlayList(playlist, entrada);
         if(id==-1){
             return;
-        }   
+        }
         OpcionesCanciones.busquedaBinaria(playlist.buscar(id).getCanciones(), entrada);
 
         }
