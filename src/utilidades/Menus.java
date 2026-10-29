@@ -82,5 +82,6 @@ public class Menus {
         System.out.println("8. Buscar canción en la Playlist");
         System.out.println("9. Reproducir Playlist");
         System.out.println("10. Regresar al menú de inicio.");
+        System.out.print("Ingresa una opción: ");
     }
 }

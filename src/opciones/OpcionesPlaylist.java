@@ -154,7 +154,7 @@ public class OpcionesPlaylist {
             System.out.println("Canción Agregada exitosamente!");
         }
         else{
-        System.out.println("No se puede agregar la canción");
+        System.out.println("No se pudo agregar: la canción ya está en la playlist");
         }
 
             /*System.out.println("Agregar canción por:\n1)Nombre\n2)ID");
@@ -200,6 +200,7 @@ public class OpcionesPlaylist {
             return;
         }
         playlist.eliminar(id);
+        System.out.println("PlayList eliminada");
         }
         else{
             System.out.println("No hay ninguna PlayList registrada");
@@ -325,7 +326,7 @@ public class OpcionesPlaylist {
 
     public static void buscarCancionPlayList(HashPlaylist playlist, Scanner entrada){
         if(!playlist.isEmpty()){
-        System.out.println("Ingrese el ID de la PlayList que desea reproducir");
+        System.out.println("Ingrese el ID de la PlayList donde desea buscar");
         int id=Utilidades.seleccionarIdPlayList(playlist, entrada);
         if(id==-1){
             return;
