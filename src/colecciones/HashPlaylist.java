@@ -104,11 +104,11 @@ public class HashPlaylist {
 
     public boolean isEmpty(){
         for(ArrayList<Playlist> playlist: tabla){
-            if(playlist.isEmpty()){
-                return true;
+            if(!playlist.isEmpty()){
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
 }

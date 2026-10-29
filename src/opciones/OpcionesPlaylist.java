@@ -154,7 +154,7 @@ public class OpcionesPlaylist {
             System.out.println("Canción Agregada exitosamente!");
         }
         else{
-        System.out.println("No se puede eliminar la canción");
+        System.out.println("No se puede agregar la canción");
         }
 
             /*System.out.println("Agregar canción por:\n1)Nombre\n2)ID");
@@ -299,9 +299,12 @@ public class OpcionesPlaylist {
             return;
         }
         OpcionesCanciones.ordenar(playlist.buscar(id).getCanciones(), entrada);
-
-
     }
+
+    else{
+        System.out.println("Aun no se ha creado ninguna Playlist");
+    }
+
 }
 
     public static void reproducirPlayList(HashPlaylist playlist, Scanner entrada){
@@ -312,6 +315,9 @@ public class OpcionesPlaylist {
             return;
         }  
         playlist.buscar(id).reproducirPlaylist(entrada);
+    }
+    else{
+        System.out.println("Aun no se ha creado ninguna Playlist");
     }
 
 
@@ -328,7 +334,7 @@ public class OpcionesPlaylist {
 
         }
         else{
-            System.out.println("No hay ninguna PlayList registrada");
+            System.out.println("Aun no se ha creado ninguna Playlist");
         }
     }
 
