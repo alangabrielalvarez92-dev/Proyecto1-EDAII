@@ -18,31 +18,28 @@ public class Principal {
         int opcion;
         Menus.mostrarBanner();
 
-        try {
-            do{
-                Menus.mostrarMenuPrincipal();
-                opcion = Utilidades.leerEntero(entrada);
-                switch (opcion){
-                    case 1 ->{
-                        OpcionesCanciones.ejecutar(canciones, artistas, playlists, entrada);
-                    }
-                    case 2 ->{
-                        OpcionesArtistas.ejecutar(artistas, canciones, playlists, entrada);
-                    }
-                    case 3 ->{
-                        OpcionesPlaylist.ejecutar(playlists,entrada,canciones);
-                    }
-                    case 4 ->{
-                        System.out.println("Saliendo de SpotiFI");
-                    }
-                    default -> {
-                        System.out.println("Ingresa una opción válida!");
-                    }
+        do{
+            Menus.mostrarMenuPrincipal();
+            opcion = Utilidades.leerEntero(entrada);
+            switch (opcion){
+                case 1 ->{
+                    OpcionesCanciones.ejecutar(canciones, artistas, playlists, entrada);
                 }
-            }while(opcion != 4);
-        } catch (java.util.NoSuchElementException e) {
-            System.out.println("\nEntrada finalizada. Cerrando SpotiFI.");
-        }
+                case 2 ->{
+                    OpcionesArtistas.ejecutar(artistas, canciones, playlists, entrada);
+                }
+                case 3 ->{
+                    OpcionesPlaylist.ejecutar(playlists,entrada,canciones);
+                }
+                case 4 ->{
+                    System.out.println("Saliendo de SpotiFI");
+                }
+                default -> {
+                    System.out.println("Ingresa una opción válida!");
+                }
+            }
+        }while(opcion != 4);
+
 
     }
 }

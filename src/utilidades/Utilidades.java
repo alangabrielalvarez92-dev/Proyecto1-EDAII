@@ -7,11 +7,16 @@ public class Utilidades {
     public static int leerEntero(Scanner entrada) {
         while (true) {
             String texto = entrada.nextLine().trim();
-            try {
-                return Integer.parseInt(texto);
-            } catch (NumberFormatException e) {
-                System.out.print("Ingresa un número entero válido: ");
+            Scanner numero = new Scanner(texto);
+            if (numero.hasNextInt()) {
+                int valor = numero.nextInt();
+                if (!numero.hasNext()) {
+                    numero.close();
+                    return valor;
+                }
             }
+            numero.close();
+            System.out.print("Ingresa un número entero válido: ");
         }
     }
 

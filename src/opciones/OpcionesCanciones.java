@@ -188,7 +188,7 @@ public class OpcionesCanciones {
                     case 4 -> (a, b) -> b.getArtista().getNombre().compareToIgnoreCase(a.getArtista().getNombre());
                     case 5 -> Comparator.comparingInt(Cancion::getId);
                     case 6 -> Comparator.comparingInt(Cancion::getId).reversed();
-                    default -> throw new IllegalArgumentException("Opción inválida");
+                    default -> Comparator.comparingInt(Cancion::getId);
                 };
                 MergeSort.mergeSort(copia, criterio);
 
